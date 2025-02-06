@@ -26,11 +26,17 @@ A Secure JWT-based authentication system for user login and token management.
 ### 2. Install Dependencies
 - npm install
 ### 3.Create .env file in root directory:
+
 PORT=your port
+
 MONGODB_URI=mongodb://localhost:27017/auth-rbac-db
+
 JWT_SECRET=your_secure_jwt_secret_here
+
 JWT_EXPIRES_IN=expiration time
+
 ### 4.Database Setup
+
 - Ensure MongoDB is running locally or update MONGODB_URI to your remote database.
   
 ### 5.Dependencies
