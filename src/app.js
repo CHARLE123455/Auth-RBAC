@@ -7,7 +7,7 @@ const app = express();
 // Import routes
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
-const roleRoutes = require('./routes/rbacRoutes');
+const rbacRoutes = require('./routes/rbacRoutes');
 
 
 
@@ -23,7 +23,7 @@ app.use(express.json());
 // API Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/roles', roleRoutes);
+app.use('/api/v1/roles', rbacRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
