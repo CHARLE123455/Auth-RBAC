@@ -1,72 +1,81 @@
-# Auth-RBAC
-A Secure JWT-based authentication system for user login and token management.
+# Auth-RBAC API
 
-
-## Features
-
-- 🔐 JWT-based authentication system
-- 🛡️ Role-Based Access Control (RBAC)
-- 🔑 Token management with expiration
-- 📦 Protected API endpoints based on user roles
-- 👥 User management for Admin users
-- 🔄 Refresh token rotation (optional)
-- 🛡️ Secure password storage with bcrypt
+This is a Role-Based Access Control (RBAC) authentication API built using Node.js, Express, and MongoDB with Mongoose.
 
 ## Prerequisites
 
-- Node.js 
-- npm
-- MongoDB (v6+)
-- Postman or similar API testing tool
-- Basic understanding of REST APIs and JWT
+Ensure you have the following installed on your machine:
+
+- **Node.js** (v14 or later recommended)  
+- **MongoDB** (local or cloud-based, e.g., MongoDB Atlas)  
+- **Git** (optional, for cloning the repository)  
+- **Visual Studio Code** (for development)  
 
 ## Setup Instructions
 
-### 1. Clone Repository
-### 2. Install Dependencies
-- npm install
-### 3.Create .env file in root directory:
+### 1. Clone the Repository
+```sh
+git clone https://github.com/your-username/Auth-RBAC.git
+cd Auth-RBAC
+```
 
-PORT=your port
+### 2. Open in VS Code
+```sh
+code .
+```
 
-MONGODB_URI=mongodb://localhost:27017/auth-rbac-db
+### 3. Install Dependencies
+```sh
+npm install
+```
 
-JWT_SECRET=your_secure_jwt_secret_here
+### 4. Set Up Environment Variables
+Create a `.env` file in the root directory and add the following variables:
 
-JWT_EXPIRES_IN=expiration time
+```env
+PORT=9090
+MONGO_URI=mongodb://localhost:27017/auth_rbac # Or your MongoDB Atlas URI
+JWT_SECRET=your_jwt_secret_key
+```
 
-### 4.Database Setup
+### 5. Start the Server
 
-- Ensure MongoDB is running locally or update MONGODB_URI to your remote database.
-  
-### 5.Dependencies
-Express.js - Web framework
+#### Development Mode (with auto-restart using nodemon):
+```sh
+npm run dev
+```
 
-Mongoose - MongoDB ODM
+#### Production Mode:
+```sh
+npm start
+```
 
-jsonwebtoken - JWT implementation
+## API Endpoints
 
-bcryptjs - Password hashing
+### Authentication
+- **`POST /api/auth/register`** - Register a new user  
+- **`POST /api/auth/login`** - Authenticate and receive a token  
 
-dotenv - Environment management
-### 6. API ENDPOINTS
+### User Management
+- **`GET /api/users`** - Get all users (Admin only)  
+- **`GET /api/users/:id`** - Get a specific user  
 
-Authentication
+### Role Management
+- **`POST /api/roles`** - Create a new role  
+- **`GET /api/roles`** - List all roles  
 
-POST	/api/auth/register	Register new user	Public
+## Dependencies
+- **Express** - Web framework for Node.js  
+- **Mongoose** - ODM for MongoDB  
+- **jsonwebtoken** - Handling authentication tokens  
+- **dotenv** - Environment variable management  
+- **bcryptjs** - Hashing passwords  
 
-POST	/api/auth/login	Login & get access token	Public
+## Troubleshooting
+- Ensure MongoDB is running locally or use a valid MongoDB Atlas URI.  
+- Check `.env` file for missing or incorrect values.  
+- Run `console.log(process.env.MONGO_URI)` before connecting to MongoDB to debug connection issues.  
 
-POST	/api/auth/refresh	Refresh access token	Authenticated
+## License
+This project is licensed under the **MIT License**.
 
-POST	/api/auth/logout	Invalidate refresh token	Authenticated
-
-User Management (Admin Only)
-
-Method	Endpoint	Description
-
-GET	/api/users	Get all users
-
-PUT	/api/users/:id	Update user role
-
-DELETE	/api/users/:id	Delete user
