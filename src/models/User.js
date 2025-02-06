@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
             validator: function(email) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
             },
-            message: isMailValid => `${isMailValid.value} is not a valid email address!`
+            message: (isMailValid) => `${isMailValid.value} is not a valid email address!`
         },
         
     },
@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
             validator: function(password) {
                 return /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,13}/.test(password);
             },
-            message: isPasswordValid => `${isPasswordValid.value} is not a valid password!`
+            message: (isPasswordValid) => `${isPasswordValid.value} is not a valid password!`
         },
     },
     role: {

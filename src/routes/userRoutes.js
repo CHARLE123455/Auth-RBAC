@@ -3,11 +3,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const { authenticateJWT, authorize } = require('../middleware/authMiddleware');
 
-router.post('/', 
-    authenticateJWT, 
-    authorize('admin'), 
-    userController.createUser
-);
+router.post('/register', userController.createUser);
 
 router.get('/all', 
     authenticateJWT, 
