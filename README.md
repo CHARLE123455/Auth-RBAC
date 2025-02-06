@@ -44,14 +44,23 @@ bcryptjs - Password hashing
 
 dotenv - Environment management
 ### 6. API ENDPOINTS
+
 Authentication
-Method	Endpoint	Description	Access
+
 POST	/api/auth/register	Register new user	Public
+
 POST	/api/auth/login	Login & get access token	Public
+
 POST	/api/auth/refresh	Refresh access token	Authenticated
+
 POST	/api/auth/logout	Invalidate refresh token	Authenticated
+
 User Management (Admin Only)
+
 Method	Endpoint	Description
+
 GET	/api/users	Get all users
+
 PUT	/api/users/:id	Update user role
+
 DELETE	/api/users/:id	Delete user
