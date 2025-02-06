@@ -16,7 +16,7 @@ exports.generateToken = (user) => {
 
 exports.loginUser = async(email, password) => {
     try {
-        const user = await user.findOne({where: { email}});
+        const user = await User.findOne({where: { email}});
         if (!user) {
             throw new Error('User not found');
             }
@@ -24,7 +24,7 @@ exports.loginUser = async(email, password) => {
         if (!isPasswordValid) {
             throw new Error('Invalid password');    
         }
-        const token = getToken(user);
+        const token = generateToken(user);
         return {user, token};
 
         }

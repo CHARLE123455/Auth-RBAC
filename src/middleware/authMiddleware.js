@@ -49,6 +49,14 @@ exports.authorize = (roleOrPermission) => async (req, res, next) => {
     try {
         const user = req.user;
 
+        if (!user.role) {
+            return res.status(403).json({
+                success: false,
+                message: 'User role not assigned'
+            });
+        }
+        
+
         
         if (typeof roleOrPermission === 'string') {
             if (user.role.name !== roleOrPermission) {
