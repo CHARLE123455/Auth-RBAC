@@ -49,7 +49,7 @@ exports.changePassword = async (req, res) => {
         const { newPassword } = req.body;
         await authService.changePassword(req.user.id, newPassword);
         res.status(200).json({
-            success: true,
+            success: false,
             message: 'Password updated successfully'
         });
     } catch (error) {

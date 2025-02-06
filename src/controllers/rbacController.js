@@ -1,4 +1,4 @@
-const roleService = require('../services/rbacService');
+const rbacService = require('../services/rbacService');
 
 exports.createRole = async (req, res) => {
     try {

@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 // Register User
 exports.registerUser = async (name, email, password, role) => {
     try {
+        
         if (!password) throw new Error("Password is required");
 
         const encryptedPassword = await bcrypt.hash(password, 10);

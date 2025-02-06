@@ -3,20 +3,12 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const Token = require('../models/Token');
 
-//Generate token
-exports.generateToken = (user) => {
-    return jwt.sign({ id: user.id,role:user.role }, process.env.JWT_SECRET_KEY, {
-        expiresIn: process.env.JWT_EXPIRES_IN
-    });
-    
-};
-
 
 // Login User
 
 exports.loginUser = async(email, password) => {
     try {
-        const user = await User.findOne({where: { email}});
+        const user = await User.findOne( { email});
         if (!user) {
             throw new Error('User not found');
             }
