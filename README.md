@@ -1,72 +1,86 @@
-# Auth-RBAC
-A Secure JWT-based authentication system for user login and token management.
+Auth-RBAC API
 
+This is a Role-Based Access Control (RBAC) authentication API built using Node.js, Express, and MongoDB with Mongoose.
 
-## Features
+Prerequisites
 
-- 🔐 JWT-based authentication system
-- 🛡️ Role-Based Access Control (RBAC)
-- 🔑 Token management with expiration
-- 📦 Protected API endpoints based on user roles
-- 👥 User management for Admin users
-- 🔄 Refresh token rotation (optional)
-- 🛡️ Secure password storage with bcrypt
+Ensure you have the following installed on your machine:
 
-## Prerequisites
+Node.js (v14 or later recommended)
 
-- Node.js 
-- npm
-- MongoDB (v6+)
-- Postman or similar API testing tool
-- Basic understanding of REST APIs and JWT
+MongoDB (local or cloud-based, e.g., MongoDB Atlas)
 
-## Setup Instructions
+Git (optional, for cloning the repository)
 
-### 1. Clone Repository
-### 2. Install Dependencies
-- npm install
-### 3.Create .env file in root directory:
+Setup Instructions
 
-PORT=your port
+1. Clone the Repository
 
-MONGODB_URI=mongodb://localhost:27017/auth-rbac-db
+git clone https://github.com/your-username/Auth-RBAC.git
+cd Auth-RBAC
 
-JWT_SECRET=your_secure_jwt_secret_here
+2. Install Dependencies
 
-JWT_EXPIRES_IN=expiration time
+npm install
 
-### 4.Database Setup
+3. Set Up Environment Variables
 
-- Ensure MongoDB is running locally or update MONGODB_URI to your remote database.
-  
-### 5.Dependencies
-Express.js - Web framework
+Create a .env file in the root directory and add the following variables:
 
-Mongoose - MongoDB ODM
+PORT=9090
+MONGO_URI=mongodb://localhost:27017/auth_rbac # Or your MongoDB Atlas URI
+JWT_SECRET=your_jwt_secret_key
 
-jsonwebtoken - JWT implementation
+4. Start the Server
 
-bcryptjs - Password hashing
+Development Mode (with auto-restart using nodemon):
 
-dotenv - Environment management
-### 6. API ENDPOINTS
+npm run dev
+
+Production Mode:
+
+npm start
+
+API Endpoints
 
 Authentication
 
-POST	/api/auth/register	Register new user	Public
+POST /api/auth/register - Register a new user
 
-POST	/api/auth/login	Login & get access token	Public
+POST /api/auth/login - Authenticate and receive a token
 
-POST	/api/auth/refresh	Refresh access token	Authenticated
+User Management
 
-POST	/api/auth/logout	Invalidate refresh token	Authenticated
+GET /api/users - Get all users (Admin only)
 
-User Management (Admin Only)
+GET /api/users/:id - Get a specific user
 
-Method	Endpoint	Description
+Role Management
 
-GET	/api/users	Get all users
+POST /api/roles - Create a new role
 
-PUT	/api/users/:id	Update user role
+GET /api/roles - List all roles
 
-DELETE	/api/users/:id	Delete user
+Dependencies
+
+Express - Web framework for Node.js
+
+Mongoose - ODM for MongoDB
+
+jsonwebtoken - Handling authentication tokens
+
+dotenv - Environment variable management
+
+bcryptjs - Hashing passwords
+
+Troubleshooting
+
+Ensure MongoDB is running locally or use a valid MongoDB Atlas URI.
+
+Check .env file for missing or incorrect values.
+
+Run console.log(process.env.MONGO_URI) before connecting to MongoDB to debug connection issues.
+
+License
+
+This project is licensed under the MIT License.
