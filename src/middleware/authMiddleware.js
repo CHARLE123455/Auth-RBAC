@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { verifyToken } = require('../config/jwtConfig');
+const { verifyToken } = require('../services/tokenService');
+const User = require('../models/user');
 
 // Authenticate JWT
 exports.authenticateJWT = (req, res, next) => {
@@ -20,10 +21,10 @@ exports.authenticateJWT = (req, res, next) => {
     }
 };
 
-// Authorize admin access
-exports.authorizeAdmin = (req, res, next) => {
-    if (!req.user || req.user.role !== 'admin') {
-        return res.status(403).json({ message: 'You are not authorized to access this section' });
+// Authorize role access
+exports.authencticateRole = (requiredRole) => async (req, res, next) => {
+    if (!req.user || req.user.role !== requiredRole) {
+        return res.status(403).json({ message: 'Access denied.' });
     }
     next();
-};
+}; 
