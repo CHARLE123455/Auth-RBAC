@@ -16,7 +16,7 @@ exports.loginUser = async(email, password) => {
         if (!isPasswordValid) {
             throw new Error('Invalid password');    
         }
-        const token = generateToken(user);
+        const token = this.generateToken(user);
         return {user, token};
 
         }
