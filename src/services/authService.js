@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const Token = require('../models/Token');
+const { generateToken } = require('../services/tokenService');
 
 
 // Login User
@@ -16,7 +17,7 @@ exports.loginUser = async(email, password) => {
         if (!isPasswordValid) {
             throw new Error('Invalid password');    
         }
-        const token = this.generateToken(user);
+        const token = generateToken(user);
         return {user, token};
 
         }
