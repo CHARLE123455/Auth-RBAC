@@ -20,7 +20,7 @@ exports.loginUser = async(email, password) => {
         const token = generateToken(user);
         return {user, token};
 
-        }
+        }    
     catch (error) {
         throw new Error("login failed: " + error.message);
     }
@@ -40,6 +40,10 @@ exports.logoutUser = async(userId) => {
 exports.refreshToken = async (token) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const storedToken = await Token.findOne({ token });
+        if (storedToken !== refreshToken) {
+            throw new Error('Token already exists')
+        }
         return generateToken(decoded);
 } catch (error) {
         throw new Error("Invalid or expired token");
